@@ -1,37 +1,121 @@
-<!DOCTYPE html> 
-<html lang="pt-br"> 
-  <head> 
-    <meta charset="UTF-8" /> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-    <title>Flashcards de Mitos e Verdades</title> 
-  </head> 
-  <body> 
-<header> 
-  <h1>Confere Aí</h1> 
-  <nav> 
-    <a href="#">Início</a> 
-  </nav> 
-</header> 
- <main> 
-  <h2>Descubra a verdade passando o mouse</h2> 
-  <section> 
-    <article> 
-      <div> 
-        <div> 
-          <img src="https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/mm1012723121410486.jpg?w=1900&h=2849" alt="Pinguim" class="cartao-imagem"> 
-          <p>Pinguins conseguem voar como pássaros!</p> 
-        </div> 
-        <div class="cartao-verso"> 
-          <img src="https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/mm1012723121410486.jpg?w=1900&h=2849" alt="Pinguim" class="cartao-imagem"> 
-          <p>Pinguins não voam, mas são excelentes nadadores.</p> 
-        </div> 
-      </div> 
-    </article> 
-  </section> 
-</main> 
- 
-<footer> 
-  <p>Projeto feito por [wallan]</p> 
-</footer> 
-  </body> 
-</html> 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curiosidades sobre Pinguins</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS personalizado para o efeito de virar o card 3D */
+        .scene {
+            perspective: 1000px; /* Cria a profundidade 3D */
+        }
+        .card {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            position: relative;
+        }
+        /* Classe que será adicionada via JS para virar o card */
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Esconde a parte de trás quando virada */
+            border-radius: 1rem; /* Arredondamento das bordas */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Lado da frente do card */
+        .card-front {
+            background-color: #E0F2FE; /* Azul claro estilo gelo */
+            color: #1E3A8A; /* Azul escuro para o texto */
+        }
+        /* Lado de trás do card */
+        .card-back {
+            background-color: #1E3A8A; /* Azul escuro */
+            color: #E0F2FE; /* Azul claro para o texto */
+            transform: rotateY(180deg); /* Já começa virado 180 graus */
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex flex-col items-center py-12 font-sans">
+
+    <header class="mb-12 text-center">
+        <h1 class="text-4xl font-bold text-slate-800 mb-2">Curiosidades de Pinguins 🐧</h1>
+        <p class="text-slate-600">Clique no card para descobrir se a afirmação é verdadeira ou falsa!</p>
+    </header>
+
+    <main class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full px-4">
+
+        <!-- Flashcard 1 -->
+        <div class="scene w-full h-80">
+            <div class="card w-full h-full" onclick="flipCard(this)">
+                <!-- Lado da Frente (A Afirmação) -->
+                <div class="card-face card-front border-4 border-blue-200">
+                    <div class="text-6xl mb-4">🐧</div>
+                    <h2 class="text-xl font-semibold mb-4">Mito ou Verdade?</h2>
+                    <p class="text-lg">Existem ursos polares e pinguins no mesmo lugar (Pólo Norte).</p>
+                </div>
+                <!-- Lado de Trás (A Resposta) -->
+                <div class="card-face card-back border-4 border-blue-400">
+                    <h2 class="text-2xl font-bold mb-2 text-red-400">FALSO!</h2>
+                    <p class="text-base">Eles vivem em polos opostos! Os ursos polares vivem no Ártico (Norte) e os pinguins vivem na Antártica (Sul).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcard 2 -->
+        <div class="scene w-full h-80">
+            <div class="card w-full h-full" onclick="flipCard(this)">
+                <!-- Lado da Frente -->
+                <div class="card-face card-front border-4 border-blue-200">
+                    <div class="text-6xl mb-4">🧊</div>
+                    <h2 class="text-xl font-semibold mb-4">Mito ou Verdade?</h2>
+                    <p class="text-lg">Todos os pinguins vivem em lugares com neve e muito gelo.</p>
+                </div>
+                <!-- Lado de Trás -->
+                <div class="card-face card-back border-4 border-blue-400">
+                    <h2 class="text-2xl font-bold mb-2 text-red-400">FALSO!</h2>
+                    <p class="text-base">Muitas espécies vivem em climas temperados ou até tropicais, como o Pinguim-de-Galápagos, que vive perto da Linha do Equador.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcard 3 -->
+        <div class="scene w-full h-80">
+            <div class="card w-full h-full" onclick="flipCard(this)">
+                <!-- Lado da Frente -->
+                <div class="card-face card-front border-4 border-blue-200">
+                    <div class="text-6xl mb-4">🐟</div>
+                    <h2 class="text-xl font-semibold mb-4">Mito ou Verdade?</h2>
+                    <p class="text-lg">Os pinguins têm uma glândula especial para tirar o sal da água do mar que bebem.</p>
+                </div>
+                <!-- Lado de Trás -->
+                <div class="card-face card-back border-4 border-blue-400">
+                    <h2 class="text-2xl font-bold mb-2 text-green-400">VERDADE!</h2>
+                    <p class="text-base">Eles possuem uma glândula supraorbital perto dos olhos que filtra o sal da corrente sanguínea, que depois é espirrado pelo bico.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Função chamada quando um card é clicado
+        function flipCard(cardElement) {
+            // Alterna a classe 'is-flipped'. 
+            // Se ela existir, remove (desvira). Se não existir, adiciona (vira).
+            cardElement.classList.toggle('is-flipped');
+        }
+    </script>
+</body>
+</html>
